@@ -86,39 +86,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("images/fundo.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: pets.isEmpty // Verifica se pets está vazio
-            ? const Center(
-                child:
-                    CircularProgressIndicator()) // Mostra um indicador de carregamento
-            : ListView.builder(
-                itemCount: pets.length,
-                itemBuilder: (context, index) {
-                  final pet = pets[index];
-                  return Column(
-                    children: [
-                      Pet(
-                        id: pet.id,
-                        nome: pet.nome ?? 'Desconhecido',
-                        urlImagem: (index == 0)
-                            ? 'https://i0.statig.com.br/bancodeimagens/2f/ym/i8/2fymi85z5vo5pcl5rsnsr3xgi.jpg'
-                            : 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2024/07/03/79816500-shih-tzu.jpg',
-                        idade: calcularIdade(
-                            pet.dataNascimento), // Ajuste conforme necessário
-                      ),
-                      if (index != pets.length - 1)
-                        Divider(color: Colors.black),
-                    ],
-                  );
-                },
-              ),
-      ),
+      body: Container(),
       bottomNavigationBar: BottonNavigation(),
     );
   }
