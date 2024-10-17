@@ -16,9 +16,6 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => AppState(),
       child: MaterialApp(
-        routes: {
-          '/login': (context) => LoginPage(),
-        },
         title: 'Tindog',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),

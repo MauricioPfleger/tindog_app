@@ -19,8 +19,12 @@ class LoginResponse {
   LoginResponse({this.id = 0, required this.mensagem});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    int id_aux = 0;
+    if (json.containsKey('id')) {
+      id_aux = json['id'];
+    }
     return LoginResponse(
-      id: json['id'],
+      id: id_aux,
       mensagem: json['mensagem'],
     );
   }

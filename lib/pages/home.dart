@@ -49,7 +49,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +62,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           PopupMenuButton<String>(
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
             onSelected: (value) {
               // Ação com base na seleção
               print('Você selecionou: $value');
