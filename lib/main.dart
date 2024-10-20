@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:tindog_app/app_state.dart';
-import 'package:tindog_app/pages/home.dart';
 import 'package:tindog_app/pages/login_page.dart';
 
 void main() {

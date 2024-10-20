@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:tindog_app/models/login.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tindog_app/models/petResponse.dart';
 import 'package:tindog_app/pages/home.dart';
-import 'package:tindog_app/widget/pet.dart';
 
 class AppState extends ChangeNotifier {
   Future<void>? EfetuarLogin(
@@ -122,5 +120,6 @@ class AppState extends ChangeNotifier {
       );
     }
     notifyListeners();
+    return null;
   }
 }

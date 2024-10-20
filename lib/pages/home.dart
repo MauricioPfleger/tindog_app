@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tindog_app/main.dart';
 import 'package:tindog_app/pages/login_page.dart';
 import 'package:tindog_app/pages/pet_page.dart';
 
