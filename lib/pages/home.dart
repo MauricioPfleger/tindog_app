@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tindog_app/app_state.dart';
 import 'package:tindog_app/main.dart';
-import 'package:tindog_app/models/petResponse.dart';
-import 'package:tindog_app/widget/bottonNavigation.dart';
-import 'package:tindog_app/widget/pet.dart';
+import 'package:tindog_app/pages/login_page.dart';
+import 'package:tindog_app/pages/pet_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.IdTutor});
@@ -16,39 +13,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<PetResponse> pets = []; // Inicialize como uma lista vazia
-
-  @override
-  void initState() {
-    super.initState();
-    _buscarPets(); // Inicie a busca de pets
-  }
-
-  Future<void> _buscarPets() async {
-    var appState = context.read<AppState>();
-    final fetchedPets = await appState.BuscarPets(widget.IdTutor);
-    setState(() {
-      pets = fetchedPets!; // Atualiza o estado com os pets obtidos
-    });
-  }
-
-  int calcularIdade(DateTime dataNascimento) {
-    final hoje = DateTime.now();
-    final idade = hoje.year - dataNascimento.year;
-
-    // Verifica se já fez aniversário este ano
-    if (hoje.month < dataNascimento.month ||
-        (hoje.month == dataNascimento.month && hoje.day < dataNascimento.day)) {
-      return idade - 1; // Se não fez aniversário ainda, subtrai 1
-    }
-
-    return idade; // Retorna a idade calculada
-  }
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      PetPage(
+        IdTutor: widget.IdTutor,
+      ),
+      Container(),
+      Container(),
+    ];
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           PopupMenuButton<String>(
-            icon: const Icon(Icons.more_vert),
+            icon: Icon(Icons.more_vert),
             onSelected: (value) {
               // Ação com base na seleção
               print('Você selecionou: $value');
@@ -85,8 +63,30 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Container(),
-      bottomNavigationBar: BottonNavigation(),
+      body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("images/fundo.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: pages.elementAt(_currentPage)),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        selectedItemColor: Colors.black,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Buscar"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: "Configurações"),
+        ],
+        currentIndex: _currentPage,
+        onTap: (index) {
+          setState(() {
+            _currentPage = index;
+          });
+        },
+      ),
     );
   }
 }
