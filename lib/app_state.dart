@@ -9,7 +9,7 @@ import 'package:tindog_app/pages/home.dart';
 class AppState extends ChangeNotifier {
   Future<void>? EfetuarLogin(
       BuildContext contextStart, String email, String senha) async {
-    final url = Uri.parse('http://192.168.1.14:5115/Tutor/v1/login');
+    final url = Uri.parse('http://172.22.100.86:5115/Tutor/v1/login');
     final loginRequest = LoginRequest(email: email, senha: senha);
 
     try {
@@ -78,7 +78,7 @@ class AppState extends ChangeNotifier {
   }
 
   Future<List<PetResponse>?>? BuscarPets(int idTutor) async {
-    final url = Uri.parse('http://192.168.1.14:5115/Tutor/v1/$idTutor/pets');
+    final url = Uri.parse('http://172.22.100.86:5115/Tutor/v1/$idTutor/pets');
 
     try {
       final response = await http.get(
