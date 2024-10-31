@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tindog_app/pages/pet_edit_page.dart';
 
 class Pet extends StatefulWidget {
   const Pet(
@@ -57,7 +58,16 @@ class _PetState extends State<Pet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PetEdit(),
+                          ),
+                        );
+                      },
+                      icon: Icon(Icons.edit)),
                   IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
                 ],
               ),

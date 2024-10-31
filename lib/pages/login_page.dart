@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tindog_app/app_state.dart';
+import 'package:tindog_app/pages/tutor_register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -53,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             child: SizedBox(
               width: 300,
-              height: 240,
+              height: 300,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Form(
@@ -100,6 +101,17 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         },
                         child: const Text('Login'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TutorRegister(),
+                            ),
+                          );
+                        },
+                        child: const Text('Cadastre-se'),
                       ),
                     ],
                   ),
