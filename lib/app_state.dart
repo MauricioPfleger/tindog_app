@@ -127,7 +127,7 @@ class AppState extends ChangeNotifier {
 
   Future<List<PaisResponse>?>? BuscarPaises() async {
     // Guardar a rota do endpoint em uma variável
-    final url = Uri.parse('http://172.22.100.86:5115/Local/v1/lista-paises');
+    final url = Uri.parse('http://localhost:5115/Local/v1/lista-paises');
 
     // Utilizando try, para caso aconteça algum problema no nosso código
     // podermos apresentar uma mensagem de erro em tela
@@ -193,7 +193,7 @@ class AppState extends ChangeNotifier {
 
   Future<List<EstadoResponse>?>? BuscarEstados(int idPais) async {
     var baseUrl = Uri.parse(
-        'http://172.22.100.86:5115/Local/v1/lista-estados?idPais=$idPais');
+        'http://localhost:5115/Local/v1/lista-estados?idPais=$idPais');
     //var params = {'idPais': idPais};
     //final url = baseUrl.replace(queryParameters: params);
 
