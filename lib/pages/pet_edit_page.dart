@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tindog_app/app_state.dart';
 
 class PetEdit extends StatefulWidget {
   const PetEdit({super.key});
@@ -8,118 +10,127 @@ class PetEdit extends StatefulWidget {
 }
 
 class _PetEditState extends State<PetEdit> {
+  final NomeController = new TextEditingController();
+
   String? selectedRacas;
 
-  final List<String> Raca = ['Caramelo','Buldogue','Husky',];
-  
+  final List<String> Raca = [
+    'Caramelo',
+    'Buldogue',
+    'Husky',
+  ];
+
   String? selectedGeneros;
 
-  final List<String> Genero = ['Macho','Femea',];
-  
+  final List<String> Genero = [
+    'Macho',
+    'Femea',
+  ];
+
   String? selectedPedigrees;
 
-  final List<String> Pedigree = ['Sim','Não',];
-
-
+  final List<String> Pedigree = [
+    'Sim',
+    'Não',
+  ];
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<AppState>();
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text('Editar Informações do Pet'),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: 
-        BoxDecoration(color: Theme.of(context).colorScheme.inversePrimary),
+        decoration:
+            BoxDecoration(color: Theme.of(context).colorScheme.inversePrimary),
         child: SingleChildScrollView(
-          padding:EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextField(
-                decoration: InputDecoration(labelText:'Nome' ),
+                decoration: InputDecoration(labelText: 'Nome'),
                 keyboardType: TextInputType.text,
+                controller: NomeController,
               ),
               DropdownButtonFormField(
-                decoration: InputDecoration(labelText:'Raça' ),
+                decoration: InputDecoration(labelText: 'Raça'),
                 value: selectedRacas,
-                items: Raca.map ((Raca){  
+                items: Raca.map((Raca) {
                   return DropdownMenuItem(
-                    value: Raca, 
+                    value: Raca,
                     child: Text(Raca),
-                    );
+                  );
                 }).toList(),
-                onChanged: (value){
-                  setState((){
+                onChanged: (value) {
+                  setState(() {
                     selectedRacas = value;
                   });
                 },
-                
               ),
-               TextField(
-                decoration: InputDecoration(labelText:'Data de Nascimento' ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Data de Nascimento'),
                 keyboardType: TextInputType.datetime,
               ),
-               TextField(
-                decoration: InputDecoration(labelText:'Peso' ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Peso'),
                 keyboardType: TextInputType.number,
-              ), 
+              ),
               DropdownButtonFormField(
-                decoration: InputDecoration(labelText:'Genero' ),
+                decoration: InputDecoration(labelText: 'Genero'),
                 value: selectedGeneros,
-                items: Genero.map ((Genero){  
+                items: Genero.map((Genero) {
                   return DropdownMenuItem(
-                    value: Genero, 
+                    value: Genero,
                     child: Text(Genero),
-                    );
+                  );
                 }).toList(),
-                onChanged: (value){
-                  setState((){
+                onChanged: (value) {
+                  setState(() {
                     selectedGeneros = value;
                   });
                 },
-                
               ),
-               TextField(
-                decoration: InputDecoration(labelText:'Quantidade de Vacinas' ),
+              TextField(
+                decoration: InputDecoration(labelText: 'Quantidade de Vacinas'),
                 keyboardType: TextInputType.number,
-              ), 
-
-               DropdownButtonFormField(
-                decoration: InputDecoration(labelText:'Pedigree?' ),
+              ),
+              DropdownButtonFormField(
+                decoration: InputDecoration(labelText: 'Pedigree?'),
                 value: selectedPedigrees,
-                items: Pedigree.map ((Pedigree){  
+                items: Pedigree.map((Pedigree) {
                   return DropdownMenuItem(
-                    value: Pedigree, 
+                    value: Pedigree,
                     child: Text(Pedigree),
-                    );
+                  );
                 }).toList(),
-                onChanged: (value){
-                  setState((){
+                onChanged: (value) {
+                  setState(() {
                     selectedPedigrees = value;
                   });
                 },
-                
               ),
               const SizedBox(height: 32.0),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: (){
-                           
-                          },
-                          child: const Text('Salvar Alterações'),
-                        ),
-                      ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    appState.EfetuarLogin(
+                        // aqui seria a chamada do método para salvar a edição do pet
+                        context,
+                        NomeController
+                            .text, // apenas esta variável está implementada no momento
+                        NomeController.text);
+                  },
+                  child: const Text('Salvar Alterações'),
+                ),
+              ),
             ],
-
           ),
         ),
       ),
     );
   }
 }
-
- 
-

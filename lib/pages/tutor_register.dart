@@ -184,7 +184,9 @@ class _TutorRegisterState extends State<TutorRegister> {
                       ),
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // appState.cadastrarTutor(); implementar o método Cadastrar Tutor
+                          },
                           child: const Text('Cadastre-se'),
                         ),
                       )

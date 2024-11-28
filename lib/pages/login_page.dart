@@ -16,13 +16,6 @@ class _LoginPageState extends State<LoginPage> {
   final _senhaController = TextEditingController();
 
   @override
-  void dispose() {
-    _emailController.dispose();
-    _senhaController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     var appState = context.watch<AppState>();
     return Scaffold(
@@ -60,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Form(
                   key: _formKey,
                   child: Column(
-                    children: <Widget>[
+                    children: [
                       TextFormField(
                         controller: _emailController,
                         decoration: const InputDecoration(
